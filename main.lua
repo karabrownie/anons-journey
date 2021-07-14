@@ -16,21 +16,26 @@ require "Button"
 require "StateMachine"
 require "states/TitleScreenState"
 require "states/IntroState"
-
+require "states/Puzzle1State"
 
 
 -- game states
--- 0 title screen / main menu 
--- 1 intro / internal monologue 
--- 2 puzzle one 
--- 3 room one 
+-- title -> title screen / main menu 
+-- intro -> internal monologue 
+-- puzzle1 -> puzzle one 
+-- room1 -> room one 
 
 function love.keypressed(key)
+  love.keyboard.keysPressed[key] = true
   -- terminates the game if esc is pressed
   if key == "escape" then
     love.event.quit()
   end
 
+end
+
+function love.keyboard.wasPressed(key)
+  return love.keyboard.keysPressed[key]
 end
 
 
@@ -41,7 +46,8 @@ function love.load()
   -- initialize state machine
   STATE_MACHINE = StateMachine{
     ["title"] = function() return TitleScreenState() end,
-    ["intro"] = function() return IntroState() end
+    ["intro"] = function() return IntroState() end,
+    ["puzzle1"] = function() return Puzzle1State() end
   }
 
   -- set to first machine state
@@ -56,6 +62,8 @@ end
 function love.update(dt)
 
   STATE_MACHINE:update(dt)
+
+  love.keyboard.keysPressed = {}
 
 end
 

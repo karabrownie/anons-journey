@@ -46,8 +46,7 @@ function TitleScreenState:init()
     Button(
       "new game",
       function()
-        -- replace with actual code to start a new game
-        print("Making new game")
+        STATE_MACHINE:change("intro")
       end,
       bx,
       bys[1],
@@ -97,6 +96,16 @@ function TitleScreenState:init()
 end
 
 
+function TitleScreenState:enter(enterparams)
+  -- do nothing
+end
+ 
+
+function TitleScreenState:exit()
+  -- do nothing (for now)
+end
+ 
+
 function TitleScreenState:update(dt)
   local mx, my = love.mouse.getPosition()
   
@@ -123,7 +132,7 @@ function TitleScreenState:render()
   love.graphics.print(
     TITLE,
     self.title_font,
-    (ww * 0.5) - (self.title_width * 0.8),
+    (ww * 0.5) - (self.title_width * 0.5),
     self.title_height
   )
 
@@ -168,10 +177,3 @@ function TitleScreenState:render()
 
 end
 
-function TitleScreenState:enter(enterparams)
- -- do nothing
-end
-
-function TitleScreenState:exit()
-  -- do nothing (for now)
-end
