@@ -1,16 +1,16 @@
 --[[ 
-programmer: Kara Brown
-date: 7.12.2021
-purpose: IntroState state machine class.
-        displays the intro internal monologue and
-        button to continue into puzzle1 state.
+  programmer: Kara Brown
+  date: 7.12.2021
+  purpose: IntroState state machine class.
+           displays the intro internal monologue and
+           button to continue into puzzle1 state.
 ]]
 
 
 IntroState = Class{__includes = BaseState}
 
 function IntroState:init()
-  -- keeps track of which monologue text should be displayed
+  -- keeps track of WHich monologue text should be displayed
   self.current = 1
 
   -- initialize font
@@ -27,15 +27,22 @@ function IntroState:init()
 
   -- continue arrow button
   self.bimage = love.graphics.newImage("images/right_arrow.png")
-  self.bsx = 0.09 -- scaling factors
-  self.bsy = 0.09 -- scaling factors
-  self.bwidth = self.bimage:getWidth() * self.bsx
-  self.bheight = self.bimage:getHeight() * self.bsy
-  self.bx = (ww * 0.5) - (self.bwidth * 0.5)
-  self.by = wh - (self.bheight * 1.1)
+  self.bs = 0.09 -- scaling factor
+  self.bwidth = self.bimage:getWidth() * self.bs
+  self.bheight = self.bimage:getHeight() * self.bs
+  self.bx = (WW * 0.5) - (self.bwidth * 0.5)
+  self.by = WH - (self.bheight * 1.1)
   self.blast = false
   self.bnow = false
   
+end
+
+function IntroState:enter()
+  -- do nothing (for now)
+end
+
+function IntroState:exit()
+  -- do nothing (for now)
 end
 
 function IntroState:update(dt)
@@ -68,23 +75,16 @@ function IntroState:render()
     love.graphics.print(
       self.text[self.current],
       self.font,
-      (ww * 0.5) - (self.font:getWidth(self.text[self.current]) * 0.5),
-      (wh * 0.5) - (self.font:getHeight(self.text[self.current]) * 0.7)
+      (WW * 0.5) - (self.font:getWidth(self.text[self.current]) * 0.5),
+      (WH * 0.5) - (self.font:getHeight(self.text[self.current]) * 0.7)
     )
 
     -- display continue button (a right facing arrow)
     love.graphics.setColor(unpack(BACK_COLOR))
-    love.graphics.draw(self.bimage, self.bx, self.by, 0, self.bsx, self.bsy)
+    love.graphics.draw(self.bimage, self.bx, self.by, 0, self.bs, self.bs)
 
   end
 
 
 end
 
-function IntroState:enter()
-
-end
-
-function IntroState:exit()
-
-end

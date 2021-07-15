@@ -1,12 +1,19 @@
--- programmer: Kara Brown
--- date: 6.30.2021
--- purpose: main file for anon's journey. executes the game
---          beginning from the title screen and keeps track
---          of game states
+--[[
+  programmer: Kara Brown
+  date: 6.30.2021
+  purpose: main file for anon's journey. executes the game
+           beginning from the title screen and keeps track
+           of game states
 
--- functionality for new game and controls need implementation.
--- functionality for load game and settings can be implemented
---  after summer 2021.
+  - functionality for new game and controls need implementation.
+  - functionality for load game and settings to be implemented
+    after summer 2021.
+
+  things to make prettier:
+  - add title screen art / adjust colors
+  - add controls screen art / adjust colors
+  - add monologue art / adjust colors
+]]
 
 require "constants"
 -- allows us to create class structures for sprites and objects
@@ -16,6 +23,7 @@ require "Button"
 require "StateMachine"
 require "states/TitleScreenState"
 require "states/IntroState"
+require "states/ControlsScreenState"
 require "states/Puzzle1State"
 
 
@@ -43,10 +51,15 @@ function love.load()
   -- app window title
   love.window.setTitle(TITLE)
 
+  -- get the width and height of the window
+  WW = love.graphics.getWidth()
+  WH = love.graphics.getHeight()
+
   -- initialize state machine
   STATE_MACHINE = StateMachine{
     ["title"] = function() return TitleScreenState() end,
     ["intro"] = function() return IntroState() end,
+    ["controls"] = function() return ControlsScreenState() end,
     ["puzzle1"] = function() return Puzzle1State() end
   }
 

@@ -1,7 +1,9 @@
--- programmer: Kara Brown
--- date: 7.12.2021
--- purpose: TitleScreenState machine state class.
---          displays the main menu / title screen.
+--[[
+  programmer: Kara Brown
+  date: 7.12.2021
+  purpose: TitleScreenState machine state class.
+           displays the main menu / title screen.
+]]
 
 TitleScreenState = Class{__includes = BaseState}
 
@@ -19,24 +21,20 @@ function TitleScreenState:init()
   -- space between buttons
   self.margin = 15
 
-  -- get the width and height of the window
-  ww = love.graphics.getWidth()
-  wh = love.graphics.getHeight()
-
   -- button width is one third of the window width
-  local button_width = ww * (1/3)
+  local button_width = WW * (1/3)
   local button_height = 55
   self.total_height = (button_height + self.margin) * num_buttons
 
   -- x and y coordinates for button placement
-  local bx = (ww * 0.5) - (button_width * 0.5)
+  local bx = (WW * 0.5) - (button_width * 0.5)
   local bys = {}
   -- cursor to keep track of button y placements
   local y = self.title_height + self.margin
 
   -- determine the y placement for each button
   for i = 1, num_buttons, 1 do
-    bys[i] = (wh * 0.5) - (self.total_height * 0.5) + y
+    bys[i] = (WH * 0.5) - (self.total_height * 0.5) + y
     -- increment the height placement
     y = y + (button_height + self.margin)
   end
@@ -65,8 +63,7 @@ function TitleScreenState:init()
     Button(
       "controls",
       function()
-        -- replace with actual code to go to controls page
-        print("Going to controls")
+        STATE_MACHINE:change("controls")
       end,
       bx,
       bys[3],
@@ -97,7 +94,7 @@ end
 
 
 function TitleScreenState:enter(enterparams)
-  -- do nothing
+  -- do nothing (for now)
 end
  
 
@@ -116,7 +113,8 @@ function TitleScreenState:update(dt)
 
     button.last = button.now
     button.now = love.mouse.isDown(1) -- 1 = left click
-    if button.now and not button.last and hot then
+    -- and not button.last
+    if button.now and hot then
       button.fn()
     end
   end
@@ -132,7 +130,7 @@ function TitleScreenState:render()
   love.graphics.print(
     TITLE,
     self.title_font,
-    (ww * 0.5) - (self.title_width * 0.5),
+    (WW * 0.5) - (self.title_width * 0.5),
     self.title_height
   )
 
@@ -170,7 +168,7 @@ function TitleScreenState:render()
       button.label,
       self.font,
       -- center the text in the rects
-      (ww * 0.5) - (textw * 0.5),
+      (WW * 0.5) - (textw * 0.5),
       button.y + (texth * 0.5)
     )
   end
