@@ -1,5 +1,7 @@
--- original code credit: https://github.com/cs50
--- adaptions by: Kara Brown
+--[[
+  original code credit: https://github.com/cs50
+  adaptions by: Kara Brown
+]]
 
 StateMachine = Class{}
 

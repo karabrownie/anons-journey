@@ -1,6 +1,8 @@
--- programmer: Kara Brown
--- date: 7.13.2021
--- purpose: button class
+--[[
+programmer: Kara Brown
+date: 7.13.2021
+purpose: button class
+]]
 
 Button = Class{}
 
