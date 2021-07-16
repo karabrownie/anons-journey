@@ -48,12 +48,19 @@ end
 
 
 function love.load()
+  -- initialize window width and height
+  WW = WINDOW_WIDTH
+  WH = WINDOW_HEIGHT
+
+  -- set window dimensions
+  success = love.window.setMode(WINDOW_WIDTH, WINDOW_HEIGHT, {
+    fullscreen = false, 
+    resizable = false, 
+    vsync = true
+  })
+
   -- app window title
   love.window.setTitle(TITLE)
-
-  -- get the width and height of the window
-  WW = love.graphics.getWidth()
-  WH = love.graphics.getHeight()
 
   -- initialize state machine
   STATE_MACHINE = StateMachine{
@@ -73,6 +80,10 @@ end
 
 
 function love.update(dt)
+
+  -- get the width and height of the window (if resizable)
+  --WW = love.graphics.getWidth()
+  --WH = love.graphics.getHeight()
 
   STATE_MACHINE:update(dt)
 

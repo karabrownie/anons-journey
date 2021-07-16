@@ -11,3 +11,6 @@ BLACK = {0, 0, 0, 1}
 WHITE = {255, 255, 255, 1}
 
 TITLE = "Anon's Journey"
+
+WINDOW_WIDTH = 1600
+WINDOW_HEIGHT = 900
