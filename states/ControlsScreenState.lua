@@ -20,6 +20,7 @@ function ControlsScreenState:init()
   self.margin = 15
 
   self.controls = {
+    "esc -> exit the app",
     "mouse -> interact with screen",
     "wasd -> move Anon",
     "enter (return) -> continue, interact with objects",

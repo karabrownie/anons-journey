@@ -25,6 +25,7 @@ require "states/TitleScreenState"
 require "states/IntroState"
 require "states/ControlsScreenState"
 require "states/Puzzle1State"
+require "states/Room1State"
 
 
 -- game states
@@ -67,7 +68,8 @@ function love.load()
     ["title"] = function() return TitleScreenState() end,
     ["intro"] = function() return IntroState() end,
     ["controls"] = function() return ControlsScreenState() end,
-    ["puzzle1"] = function() return Puzzle1State() end
+    ["puzzle1"] = function() return Puzzle1State() end,
+    ["room1"] = function() return Room1State() end
   }
 
   -- set to first machine state
