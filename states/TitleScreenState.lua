@@ -44,7 +44,7 @@ function TitleScreenState:init()
     Button(
       "new game",
       function()
-        STATE_MACHINE:change("intro")
+        state_machine:change("intro")
       end,
       bx,
       bys[1],
@@ -63,7 +63,7 @@ function TitleScreenState:init()
     Button(
       "controls",
       function()
-        STATE_MACHINE:change("controls")
+        state_machine:change("controls")
       end,
       bx,
       bys[3],

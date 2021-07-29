@@ -182,7 +182,7 @@ function Puzzle1State:update()
 
   -- if puzzle was completed, change to room1 state
   if self.current == nil then
-    STATE_MACHINE:change("room1")
+    state_machine:change("room1")
   end
 end
 

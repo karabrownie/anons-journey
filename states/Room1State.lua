@@ -15,6 +15,9 @@ function Room1State:init()
   -- initialize Anon's room (for background)
   self.room = love.graphics.newImage("images/room.png")
 
+  -- initialize anon
+  self.anon = Anon()
+
 end
 
 function Room1State:enter() 
@@ -25,8 +28,8 @@ function Room1State:exit()
   -- do nothing (for now)
 end
 
-function Room1State:update() 
-
+function Room1State:update(dt) 
+  self.anon:update(dt)
 end
 
 function Room1State:render() 
@@ -36,5 +39,7 @@ function Room1State:render()
   -- set background as Anon's room
   love.graphics.draw(self.room)
 
+  -- place anon
+  self.anon:render()
 
 end

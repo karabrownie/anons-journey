@@ -73,7 +73,7 @@ function ControlsScreenState:update()
   self.bnow = love.mouse.isDown(1) -- 1 = left click
   --and not self.blast
   if (self.bnow and hot) then
-    STATE_MACHINE:change("title")
+    state_machine:change("title")
   end
 end
 

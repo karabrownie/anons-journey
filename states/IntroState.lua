@@ -59,7 +59,7 @@ function IntroState:update(dt)
 
   -- if out of text to render, switch to puzzle1
   if self.current > self.num_text then
-    STATE_MACHINE:change("puzzle1")
+    state_machine:change("puzzle1")
   end
 end
 

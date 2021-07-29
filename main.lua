@@ -27,6 +27,9 @@ require "states/ControlsScreenState"
 require "states/Puzzle1State"
 require "states/Room1State"
 
+require "Animation"
+require "Anon"
+
 
 -- game states
 -- title -> title screen / main menu 
@@ -64,7 +67,7 @@ function love.load()
   love.window.setTitle(TITLE)
 
   -- initialize state machine
-  STATE_MACHINE = StateMachine{
+  state_machine = StateMachine{
     ["title"] = function() return TitleScreenState() end,
     ["intro"] = function() return IntroState() end,
     ["controls"] = function() return ControlsScreenState() end,
@@ -73,7 +76,7 @@ function love.load()
   }
 
   -- set to first machine state
-  STATE_MACHINE:change("title")
+  state_machine:change("title")
 
   -- initialize keyboard input
   love.keyboard.keysPressed = {}
@@ -87,7 +90,7 @@ function love.update(dt)
   --WW = love.graphics.getWidth()
   --WH = love.graphics.getHeight()
 
-  STATE_MACHINE:update(dt)
+  state_machine:update(dt)
 
   love.keyboard.keysPressed = {}
 
@@ -96,6 +99,6 @@ end
 
 function love.draw()
   
-  STATE_MACHINE:render()
+  state_machine:render()
 
 end
